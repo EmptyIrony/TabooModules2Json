@@ -24,13 +24,24 @@ fun main() {
         )
     }
 
-    map.forEach { (category, moduleList) ->
+    map.toList().sortedBy {
+        sort.indexOf(it.first)
+    }.forEach { (category, moduleList) ->
         modules.add(category, gson.toJsonTree(moduleList).asJsonArray)
     }
 
     println(json.toString())
 
 }
+
+val sort = listOf(
+    "basic",
+    "platform",
+    "bukkit",
+    "minecraft",
+    "database",
+    "script"
+)
 
 val gson = Gson()
 
